@@ -1,7 +1,4 @@
 # IMProjektFS26
 
-## Wie gehts dir Andrin?
-
-## Gut und dir Quirin?
-
-testen testen testen
+Was soll hier Dokumenitert werden?
+Review mässig, was ging gut was schlecht. Arbeitsaufteilung. Learings. etc.
