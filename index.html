@@ -87,9 +87,9 @@
                   id="zeit-input"
                 />
                 <div class="time-labels">
-                  <p>wenig</p>
-                  <p>mittel</p>
-                  <p>viel</p>
+                  <p class="label1">wenig</p>
+                  <p class="label2">mittel</p>
+                  <p class="label3">viel</p>
                 </div>
               </div>
             </div>
@@ -152,7 +152,77 @@
       </div>
 
       <!-- ab hier muss es dann mit JS erstellt werden - Platzhalter nur für styling-->
-      <div class="box"></div>
+      <div class="box">
+        <div class="response">
+          <div class="train-icon">
+            <svg viewBox="0 0 20 20">
+              <path
+                d="M15 2.5H5.00004C4.07957 2.5 3.33337 3.24619 3.33337 4.16667V14.1667C3.33337 15.0871 4.07957 15.8333 5.00004 15.8333H15C15.9205 15.8333 16.6667 15.0871 16.6667 14.1667V4.16667C16.6667 3.24619 15.9205 2.5 15 2.5Z"
+                stroke="white"
+                stroke-width="1.66667"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M3.33337 9.16666H16.6667"
+                stroke="white"
+                stroke-width="1.66667"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M10 2.5V9.16667"
+                stroke="white"
+                stroke-width="1.66667"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M6.66667 15.8333L5 18.3333"
+                stroke="white"
+                stroke-width="1.66667"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M15 18.3333L13.3334 15.8333"
+                stroke="white"
+                stroke-width="1.66667"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M6.66663 12.5H6.67496"
+                stroke="white"
+                stroke-width="1.66667"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M13.3334 12.5H13.3417"
+                stroke="white"
+                stroke-width="1.66667"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+          <div class="response-text">
+            <h3 id="response-title">
+              Gehe um <span>14:43</span> auf <span>Gleis 7</span>
+            </h3>
+            <p>Gute Reise!</p>
+          </div>
+          <div>
+            <h3 id="response-train-type"></h3>
+            <h3 id="response-plattform"></h3>
+            <h3 id="response-departure"></h3>
+            <h3 id="response-duration"></h3>
+            <h2>Aussteigen in:</h2>
+            <h3 id="response-station"></h3>
+          </div>
+        </div>
+      </div>
     </main>
     <footer></footer>
     <script src="js/script.js" type="module"></script>
