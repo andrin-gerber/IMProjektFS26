@@ -69,11 +69,11 @@ startBtn.addEventListener('click', () => {
 
     const zeit = zeitInput.value;
 
-    if (zeit === '1') {
+    if (zeit === '0') {
         durationText = 'Kurz';
-    } else if (zeit === '2') {
+    } else if (zeit === '1') {
         durationText = 'Mittel';
-    } else if (zeit === '3') {
+    } else if (zeit === '2') {
         durationText = 'Lang';
     } else {
         alert('Bitte Dauer auswählen.');
