@@ -1,3 +1,8 @@
+:root{
+    --fs-title: 2.5rem;
+    --fs-title-logo: 2rem;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -5,7 +10,49 @@
 }
 
 
-body {
-    background-color: pink;
+/* #region Header */
+header {
+    background-color:#E10000;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 2rem;
 }
 
+.name {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.name h1 {
+    font-size: var(--fs-title);
+    font-family: "SBBNeue", sans-serif;
+    font-weight: 600;
+}
+
+.name #abenteuer {
+    color: #1A1A1A;
+}
+
+.name #now {
+    color: #ffffff;
+}
+
+.logo img{
+    height: var(--fs-title-logo);
+}
+
+/* #endregion */
+
+/* #region main */
+
+/* region box */
+
+
+
+/* #endregion */
+
+
+/* #endregion */

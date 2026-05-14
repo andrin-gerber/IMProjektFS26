@@ -3,20 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cocktail API</title>
+    <title>AbenteuerNOW</title>
     <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.digital.sbb.ch/fonts/v1/sbb-neue.css"
+    />
   </head>
   <body>
     <header>
-      <h1>Vorlage für interaktive Medien II</h1>
+      <div class="name">
+        <h1 id="abenteuer">Abenteuer</h1>
+        <h1 id="now">NOW</h1>
+      </div>
+      <div class="logo">
+        <img src="img/logo.svg" />
+      </div>
     </header>
     <main>
-      <h2>Main Content</h2>
-      <p>nein doch ohhhh</p>
+      <div class="box">
+        <input id="ort-input" placeholder="Von" autocomplete="off" />
+        <div id="vorschlaege"></div>
+      </div>
     </main>
-    <footer>
-      <p>This is the footer of the page.</p>
-    </footer>
+    <footer></footer>
     <script src="js/script.js" type="module"></script>
   </body>
 </html>
