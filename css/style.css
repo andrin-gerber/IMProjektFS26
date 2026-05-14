@@ -5,7 +5,9 @@
     --fs-subtitle: 2rem;
     --fs-text: 1rem;
 
-    --color-primary: #E10000;
+    --color-primary: rgb(225, 0, 0);
+    --color-primary-transparent-min: rgba(225, 0, 0, 0.2);
+    --color-primary-transparent-max: rgba(225, 0, 0, 0.05);
     --color-background: #F6F6F6;
     --color-text: #1A1A1A;
     --color-text-2: #666666;
@@ -243,18 +245,20 @@ header {
 /* #region Ausgabe Zug */
 
 .train-icon{
-    height: 100%;
-    aspect-ratio: 1-1;
+    width: min(10%, 100%);
+    max-width: 10%;
+    max-height: 100%;
+    aspect-ratio: 1 / 1;
     background-color: var(--color-primary);
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 4px;
+    border-radius: 12px;
 }
 
 .train-icon svg{
-    width: 1.6rem;
-    height: 1.6rem;
+    width: 60%;
+    height: 60%;
 }
 
 .response{
@@ -262,6 +266,8 @@ header {
     flex-direction: row;
     justify-content: left;
     gap: 0.5rem;
+    height: 100%;
+    align-items: center;
 }
 
 .response-text{
@@ -281,6 +287,33 @@ header {
 .response-text p{
     font-size: 0.8rem;
     color: var(--color-text-2);
+}
+
+.table{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.table-element{
+    background: var(--color-primary-transparent-max);
+    border: 0.5px solid var(--color-primary-transparent-min);
+    border-radius: 12px;
+    padding: 1rem;
+}
+
+.element-title{
+    color: var(--color-text-2);
+    font-size: 0.8rem;
+}
+
+.element-part-2{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.25rem;
 }
 
 /* #endregion */
