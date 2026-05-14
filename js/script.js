@@ -175,13 +175,13 @@ document.querySelector('#response-train-type').innerText =
     `${Zufallszug.category} ${Zufallszug.number}`;
 
 document.querySelector('#response-plattform').innerText =
-    `Gleis ${Zufallszug.stop.platform}`;
+    `${Zufallszug.stop.platform}`;
 
 document.querySelector('#response-departure').innerText =
-    `Abfahrt: ${time}`;
+    `${time}`;
 
 document.querySelector('#response-duration').innerText =
-    `Fahrtdauer: ${Math.round(Zufallszug.fahrtdauer)} Minuten`;
+    `${Math.round(Zufallszug.fahrtdauer)} Minuten`;
 
 const zielStation =
     Zufallszug.passList[Zufallszug.passList.length - 1].station.name;
