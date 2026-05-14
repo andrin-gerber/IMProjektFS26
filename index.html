@@ -32,15 +32,127 @@
         </div>
       </div>
       <div class="box">
-        <input id="ort-input" placeholder="Von" autocomplete="off" />
-        <div id="vorschlaege"></div>
-        <input
-          id="zeit-input"
-          placeholder="Wie viel Zeit hast du?"
-          autocomplete="off"
-        />
-        <button id="start-btn">Reise suchen</button>
+        <div class="interactive-elements">
+          <div class="inputs">
+            <div class="input-place">
+              <div class="input-title">
+                <svg viewbox="0 0 20 20">
+                  <path
+                    d="M16.6667 8.33334C16.6667 12.4942 12.0509 16.8275 10.5009 18.1658C10.3565 18.2744 10.1807 18.3331 10 18.3331C9.81938 18.3331 9.6436 18.2744 9.49921 18.1658C7.94921 16.8275 3.33337 12.4942 3.33337 8.33334C3.33337 6.56523 4.03575 4.86954 5.286 3.61929C6.53624 2.36905 8.23193 1.66667 10 1.66667C11.7682 1.66667 13.4638 2.36905 14.7141 3.61929C15.9643 4.86954 16.6667 6.56523 16.6667 8.33334Z"
+                    stroke="#EB0000"
+                    stroke-width="1.66667"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M10 10.8333C11.3807 10.8333 12.5 9.71406 12.5 8.33334C12.5 6.95263 11.3807 5.83334 10 5.83334C8.61929 5.83334 7.5 6.95263 7.5 8.33334C7.5 9.71406 8.61929 10.8333 10 10.8333Z"
+                    stroke="#EB0000"
+                    stroke-width="1.66667"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <p>Wo bist du gerade?</p>
+              </div>
+              <input id="ort-input" placeholder="Von" autocomplete="off" />
+              <div id="vorschlaege"></div>
+            </div>
+            <div class="input-time">
+              <div class="input-title">
+                <svg viewbox="0 0 20 20">
+                  <path
+                    d="M10.0001 18.3333C14.6025 18.3333 18.3334 14.6024 18.3334 10C18.3334 5.39763 14.6025 1.66667 10.0001 1.66667C5.39771 1.66667 1.66675 5.39763 1.66675 10C1.66675 14.6024 5.39771 18.3333 10.0001 18.3333Z"
+                    stroke="#EB0000"
+                    stroke-width="1.66667"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M10 5V10L13.3333 11.6667"
+                    stroke="#EB0000"
+                    stroke-width="1.66667"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <p>Wie viel Zeit hast du?</p>
+              </div>
+              <div class="input-time-and-labels">
+                <input
+                  type="range"
+                  min="0"
+                  max="2"
+                  step="1"
+                  value="1"
+                  id="zeit-input"
+                />
+                <div class="time-labels">
+                  <p>wenig</p>
+                  <p>mittel</p>
+                  <p>viel</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button id="start-btn">
+            <svg viewBox="0 0 20 20">
+              <path
+                d="M15 2.5H5.00004C4.07957 2.5 3.33337 3.24619 3.33337 4.16667V14.1667C3.33337 15.0871 4.07957 15.8333 5.00004 15.8333H15C15.9205 15.8333 16.6667 15.0871 16.6667 14.1667V4.16667C16.6667 3.24619 15.9205 2.5 15 2.5Z"
+                stroke="white"
+                stroke-width="1.66667"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M3.33337 9.16666H16.6667"
+                stroke="white"
+                stroke-width="1.66667"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M10 2.5V9.16667"
+                stroke="white"
+                stroke-width="1.66667"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M6.66667 15.8333L5 18.3333"
+                stroke="white"
+                stroke-width="1.66667"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M15 18.3333L13.3334 15.8333"
+                stroke="white"
+                stroke-width="1.66667"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M6.66663 12.5H6.67496"
+                stroke="white"
+                stroke-width="1.66667"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M13.3334 12.5H13.3417"
+                stroke="white"
+                stroke-width="1.66667"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <p>Zug suchen</p>
+          </button>
+        </div>
       </div>
+
+      <!-- ab hier muss es dann mit JS erstellt werden - Platzhalter nur für styling-->
+      <div class="box"></div>
     </main>
     <footer></footer>
     <script src="js/script.js" type="module"></script>
