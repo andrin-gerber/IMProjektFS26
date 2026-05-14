@@ -166,5 +166,40 @@ if (gefilterteZuege.length === 0) {
         hour: "2-digit",
         minute: "2-digit"
     });
-    alert(`Du fährst um ${time} Uhr auf Gleis ${Zufallszug.stop.platform} ab. Gute Fahrt!`);
+    
+    
+    document.querySelector('#response-title').innerHTML =
+    `Gehe um <span>${time}</span> auf <span>Gleis ${Zufallszug.stop.platform}</span>`;
+
+document.querySelector('#response-train-type').innerText =
+    `${Zufallszug.category} ${Zufallszug.number}`;
+
+document.querySelector('#response-plattform').innerText =
+    `Gleis ${Zufallszug.stop.platform}`;
+
+document.querySelector('#response-departure').innerText =
+    `Abfahrt: ${time}`;
+
+document.querySelector('#response-duration').innerText =
+    `Fahrtdauer: ${Math.round(Zufallszug.fahrtdauer)} Minuten`;
+
+const zielStation =
+    Zufallszug.passList[Zufallszug.passList.length - 1].station.name;
+
+const responseStation = document.querySelector('#response-station');
+
+responseStation.innerHTML = `
+    <img id="gift-img" src="img/geschenk.svg" alt="Geschenk">
+    <span id="station-name" style="display: none;">${zielStation}</span>
+`;
+
+const giftImg = document.querySelector('#gift-img');
+const stationName = document.querySelector('#station-name');
+
+giftImg.addEventListener('click', () => {
+    giftImg.style.display = 'none';
+    stationName.style.display = 'inline';
+});
 }
+
+
