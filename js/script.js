@@ -5,12 +5,6 @@ let ortEingabe = '';
 
 ortInput.addEventListener('input', async () => {
     const text = ortInput.value;
-
-    if (text.length < 2) {
-        vorschlaegeBox.innerHTML = '';
-        return;
-    }
-
     const stationen = await sucheBahnhof(text);
 
     vorschlaegeBox.innerHTML = '';
@@ -29,61 +23,39 @@ ortInput.addEventListener('input', async () => {
     });
 });
 
-
-
 async function sucheBahnhof(text) {
-
     try {
-
         const url =
             `https://transport.opendata.ch/v1/locations?query=${text}&type=station`;
 
         const response = await fetch(url);
-
         const data = await response.json();
 
         let stationenMitGleis = [];
 
-        
         for (const station of data.stations) {
-
-            // -> Busstationen entfernen
             if (station.name.includes(',')) {
                 continue;
             }
-
-            
-            // -> Stationboard laden
             const boardResponse = await fetch(
                 `https://transport.opendata.ch/v1/stationboard?station=${station.name}&limit=5`
             );
-
             const boardData = await boardResponse.json();
-
-
-            // -> Prüfen ob mindestens ein Gleis existiert
             const hatGleis = boardData.stationboard.some((zug) => {
                 return zug.stop.platform;
             });
-
-
             if (hatGleis) {
                 stationenMitGleis.push(station);
             }
         }
 
-        
         return stationenMitGleis;
 
     } catch (error) {
-
         console.error(error);
-
         return [];
     }
 }
-
-
 
 const startBtn = document.querySelector('#start-btn');
 const zeitInput = document.querySelector('#zeit-input');
@@ -99,30 +71,20 @@ startBtn.addEventListener('click', () => {
 
     if (zeit === '1') {
         durationText = 'Kurz';
-
     } else if (zeit === '2') {
         durationText = 'Mittel';
-
     } else if (zeit === '3') {
         durationText = 'Lang';
-
     } else {
-        alert('Bitte 1, 2 oder 3 eingeben.');
+        alert('Bitte Dauer auswählen.');
         return;
     }
-
-    
     main();
 });
 
-
-
-let durationOne = 20;
+let durationOne = 30;
 let durationTwo = 60;
 let durationThree = 100;
-
-
-
 
 async function loadData(ort) {
     try {
@@ -138,7 +100,6 @@ async function loadData(ort) {
 async function main() {
     let data = await loadData(ortEingabe);
     let dataArray = data.stationboard;
-
 
     console.log(dataArray);
 
@@ -174,14 +135,9 @@ let gefilterteZuege = dataArray.filter((element) => {
         && element.stop.platform;
 });
 
-
-// -> Falls nichts gefunden wird:
 if (gefilterteZuege.length === 0) {
-
     gefilterteZuege = dataArray.filter((element) => {
-
         let abfahrt = new Date(element.stop.departure);
-
         let minutenBisAbfahrt =
             (abfahrt - jetzt) / 60000;
 
@@ -195,13 +151,10 @@ if (gefilterteZuege.length === 0) {
     });
 }
 
-
 if (gefilterteZuege.length === 0) {
     alert('Keine passende Verbindung gefunden. Versuche einen anderen Bahnhof oder eine andere Dauer.');
     return;
 }
-
-
     console.log(gefilterteZuege);
     let zufallsZahl = Math.random() * gefilterteZuege.length;
     console.log(zufallsZahl);
@@ -214,5 +167,4 @@ if (gefilterteZuege.length === 0) {
         minute: "2-digit"
     });
     alert(`Du fährst um ${time} Uhr auf Gleis ${Zufallszug.stop.platform} ab. Gute Fahrt!`);
-
 }
