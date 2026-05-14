@@ -1,50 +1,71 @@
+
+const ortInput = document.querySelector('#ort-input');
+const vorschlaegeBox = document.querySelector('#vorschlaege');
+
+let ortEingabe = '';
+
+ortInput.addEventListener('input', async () => {
+    const text = ortInput.value;
+
+    if (text.length < 2) {
+        vorschlaegeBox.innerHTML = '';
+        return;
+    }
+
+    const stationen = await sucheBahnhof(text);
+
+    vorschlaegeBox.innerHTML = '';
+
+    stationen.forEach((station) => {
+        const div = document.createElement('div');
+        div.innerText = station.name;
+
+        div.addEventListener('click', () => {
+            ortInput.value = station.name;
+            ortEingabe = station.name;
+            vorschlaegeBox.innerHTML = '';
+        });
+
+        vorschlaegeBox.appendChild(div);
+    });
+});
+
+
+
+
+
 async function sucheBahnhof(text) {
-
     try {
-
-        const url =
-            `https://transport.opendata.ch/v1/locations?query=${text}&type=station`;
-
+        const url = `https://transport.opendata.ch/v1/locations?query=${text}&type=station`;
         const response = await fetch(url);
-
         const data = await response.json();
 
-        return data.stations;
+        return data.stations.filter(station => {
+            return !station.name.includes(',');
+        });
 
     } catch (error) {
-
         console.error(error);
-
         return [];
     }
 }
 
 
 
-// -> Bahnhof suchen
-let suche = prompt('Bahnhof eingeben:');
+const startBtn = document.querySelector('#start-btn');
 
+startBtn.addEventListener('click', () => {
+    if (ortEingabe === '') {
+        alert('Bitte zuerst einen Bahnhof auswählen.');
+        return;
+    }
 
-// -> Vorschläge laden
-let stationen = await sucheBahnhof(suche);
-
-
-// -> Vorschläge anzeigen
-let vorschlagText = 'Wähle eine Station:\n\n';
-
-stationen.forEach((station, index) => {
-
-    vorschlagText += `${index}: ${station.name}\n`;
-
+    durationText = 'Kurz'; // oder Mittel / Lang
+    main();
 });
 
 
-// -> Auswahl treffen
-let auswahl = prompt(vorschlagText);
 
-
-// -> Gewählte Station speichern
-let ortEingabe = stationen[auswahl].name;
 
 
 
