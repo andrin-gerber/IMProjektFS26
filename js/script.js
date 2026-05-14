@@ -1,4 +1,3 @@
-
 const ortInput = document.querySelector('#ort-input');
 const vorschlaegeBox = document.querySelector('#vorschlaege');
 
@@ -32,20 +31,54 @@ ortInput.addEventListener('input', async () => {
 
 
 
-
-
 async function sucheBahnhof(text) {
+
     try {
-        const url = `https://transport.opendata.ch/v1/locations?query=${text}&type=station`;
+
+        const url =
+            `https://transport.opendata.ch/v1/locations?query=${text}&type=station`;
+
         const response = await fetch(url);
+
         const data = await response.json();
 
-        return data.stations.filter(station => {
-            return !station.name.includes(',');
-        });
+        let stationenMitGleis = [];
+
+        
+        for (const station of data.stations) {
+
+            // -> Busstationen entfernen
+            if (station.name.includes(',')) {
+                continue;
+            }
+
+            
+            // -> Stationboard laden
+            const boardResponse = await fetch(
+                `https://transport.opendata.ch/v1/stationboard?station=${station.name}&limit=5`
+            );
+
+            const boardData = await boardResponse.json();
+
+
+            // -> Prüfen ob mindestens ein Gleis existiert
+            const hatGleis = boardData.stationboard.some((zug) => {
+                return zug.stop.platform;
+            });
+
+
+            if (hatGleis) {
+                stationenMitGleis.push(station);
+            }
+        }
+
+        
+        return stationenMitGleis;
 
     } catch (error) {
+
         console.error(error);
+
         return [];
     }
 }
@@ -53,48 +86,40 @@ async function sucheBahnhof(text) {
 
 
 const startBtn = document.querySelector('#start-btn');
-
+const zeitInput = document.querySelector('#zeit-input');
+let durationText = '';
 startBtn.addEventListener('click', () => {
+
     if (ortEingabe === '') {
         alert('Bitte zuerst einen Bahnhof auswählen.');
         return;
     }
 
-    durationText = 'Kurz'; // oder Mittel / Lang
+    const zeit = zeitInput.value;
+
+    if (zeit === '1') {
+        durationText = 'Kurz';
+
+    } else if (zeit === '2') {
+        durationText = 'Mittel';
+
+    } else if (zeit === '3') {
+        durationText = 'Lang';
+
+    } else {
+        alert('Bitte 1, 2 oder 3 eingeben.');
+        return;
+    }
+
+    
     main();
 });
 
 
 
-
-
-
-
-
-
-
-
-
-let duration = prompt('Wie lange?');
-
 let durationOne = 20;
-let durationTwo = 80;
-let durationThree = 180;
-
-let durationText = 'kurz';
-
-if (duration == '1') {
-    durationText = 'Kurz';
-    main();
-} else if (duration == '2') {
-    durationText = 'Mittel';
-    main();
-} else if (duration == '3') {
-    durationText = 'Lang';
-    main();
-}else {
-    alert('Ungültige Eingabe. Bitte gib 1, 2 oder 3 ein.');
-}
+let durationTwo = 60;
+let durationThree = 100;
 
 
 
@@ -137,7 +162,46 @@ async function main() {
         console.log(element);
     });
 
-    let gefilterteZuege = dataArray.filter((element) => element.dauerKategorie === durationText);
+let jetzt = new Date();
+
+let gefilterteZuege = dataArray.filter((element) => {
+    let abfahrt = new Date(element.stop.departure);
+    let minutenBisAbfahrt = (abfahrt - jetzt) / 60000;
+
+    return element.dauerKategorie === durationText
+        && minutenBisAbfahrt >= 8
+        && minutenBisAbfahrt <= 68
+        && element.stop.platform;
+});
+
+
+// -> Falls nichts gefunden wird:
+if (gefilterteZuege.length === 0) {
+
+    gefilterteZuege = dataArray.filter((element) => {
+
+        let abfahrt = new Date(element.stop.departure);
+
+        let minutenBisAbfahrt =
+            (abfahrt - jetzt) / 60000;
+
+        return minutenBisAbfahrt >= 8
+            && minutenBisAbfahrt <= 68
+            && element.stop.platform
+            && (
+                durationText === 'Lang' && element.dauerKategorie !== 'Lang'
+                || durationText === 'Mittel' && element.dauerKategorie === 'Kurz'
+            );
+    });
+}
+
+
+if (gefilterteZuege.length === 0) {
+    alert('Keine passende Verbindung gefunden. Versuche einen anderen Bahnhof oder eine andere Dauer.');
+    return;
+}
+
+
     console.log(gefilterteZuege);
     let zufallsZahl = Math.random() * gefilterteZuege.length;
     console.log(zufallsZahl);
