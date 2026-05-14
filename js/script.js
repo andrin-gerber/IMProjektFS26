@@ -1,9 +1,64 @@
-let ortEingabe = prompt('Ort eingeben:');
+async function sucheBahnhof(text) {
+
+    try {
+
+        const url =
+            `https://transport.opendata.ch/v1/locations?query=${text}&type=station`;
+
+        const response = await fetch(url);
+
+        const data = await response.json();
+
+        return data.stations;
+
+    } catch (error) {
+
+        console.error(error);
+
+        return [];
+    }
+}
+
+
+
+// -> Bahnhof suchen
+let suche = prompt('Bahnhof eingeben:');
+
+
+// -> Vorschläge laden
+let stationen = await sucheBahnhof(suche);
+
+
+// -> Vorschläge anzeigen
+let vorschlagText = 'Wähle eine Station:\n\n';
+
+stationen.forEach((station, index) => {
+
+    vorschlagText += `${index}: ${station.name}\n`;
+
+});
+
+
+// -> Auswahl treffen
+let auswahl = prompt(vorschlagText);
+
+
+// -> Gewählte Station speichern
+let ortEingabe = stationen[auswahl].name;
+
+
+
+
+
+
+
+
+
 let duration = prompt('Wie lange?');
 
-let durationOne = 60;
-let durationTwo = 90;
-let durationThree = 120;
+let durationOne = 20;
+let durationTwo = 80;
+let durationThree = 180;
 
 let durationText = 'kurz';
 
