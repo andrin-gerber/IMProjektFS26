@@ -64,6 +64,7 @@ header {
 
 .name #abenteuer {
     color: var(--color-text);
+    font-weight: 100;
 }
 
 .name #now {
@@ -152,6 +153,29 @@ header {
     outline: none;
 }
 
+#vorschlaege {
+    cursor: pointer;
+    border: solid 1px var(--color-box-border);
+    margin-top: 0;
+    border-radius: 4px;
+    box-shadow: 
+    0px 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0px 4px 6px -4px rgba(0, 0, 0, 0.1);
+    background-color: var(--color-box);
+}
+
+#vorschlaege *{
+    padding: 0.35rem 0.5rem;
+}
+
+#vorschlaege *:hover{
+    background-color: var(--color-box-border);
+}
+
+.vorschlaege-hide {
+    display: none;
+}
+
 #zeit-input {
     -webkit-appearance: none;
     appearance: none;
@@ -230,6 +254,7 @@ header {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    cursor: pointer;
 }
 
 #start-btn p{

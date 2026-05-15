@@ -5,10 +5,12 @@ responseBox.style.display = 'none';
 
 let ortEingabe = '';
 
+vorschlaegeBox.classList.add("vorschlaege-hide");
+
 ortInput.addEventListener('input', async () => {
     const text = ortInput.value;
     const stationen = await sucheBahnhof(text);
-
+    vorschlaegeBox.classList.remove("vorschlaege-hide");
     vorschlaegeBox.innerHTML = '';
 
     stationen.forEach((station) => {
@@ -19,6 +21,7 @@ ortInput.addEventListener('input', async () => {
             ortInput.value = station.name;
             ortEingabe = station.name;
             vorschlaegeBox.innerHTML = '';
+            vorschlaegeBox.classList.add("vorschlaege-hide")
         });
 
         vorschlaegeBox.appendChild(div);
