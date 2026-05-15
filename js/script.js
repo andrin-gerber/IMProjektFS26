@@ -64,8 +64,16 @@ async function sucheBahnhof(text) {
 
 const startBtn = document.querySelector('#start-btn');
 const zeitInput = document.querySelector('#zeit-input');
+
+const giftWrapper = document.querySelector('#gift-wrapper');
+
 let durationText = '';
 startBtn.addEventListener('click', () => {
+    if (responseBox.style.display === 'block'){
+        responseBox.style.display = 'none';
+        giftWrapper.classList.remove('open');
+    }
+
 
     if (ortEingabe === '') {
         alert('Bitte zuerst einen Bahnhof auswählen.');
@@ -85,6 +93,7 @@ startBtn.addEventListener('click', () => {
         return;
     }
     main();
+    responseBox.style.display = 'block';
 });
 
 let durationOne = 30;
@@ -207,6 +216,6 @@ giftWrapper.addEventListener('click', () => {
     }
 });
 
-responseBox.style.display = 'block';
+
 responseBox.scrollIntoView({ behavior: "smooth" });
 }
