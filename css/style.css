@@ -1,3 +1,5 @@
+/* #region Allgemein */
+
 :root{
     --fs-title-title: 2.5rem;
     --fs-title-logo: 2rem;
@@ -40,7 +42,7 @@ h2{
 p{
     font-size: var(--fs-text);
 }
-
+/* #endregion /*
 
 /* #region Header */
 header {
@@ -93,6 +95,11 @@ header {
     0px 4px 6px -4px rgba(0, 0, 0, 0.1);
 }
 
+/* #endregion */
+
+
+/* #region box 2 */
+
 .interactive-elements{
     display: flex;
     justify-content: start;
@@ -140,6 +147,8 @@ header {
     gap: 0.5rem;
 }
 
+/* #region input-ort */
+
 #ort-input{
     -webkit-appearance: none;
     width: 100%;
@@ -175,6 +184,10 @@ header {
 .vorschlaege-hide {
     display: none;
 }
+
+/* #endregion */
+
+/* #region input-time */
 
 #zeit-input {
     -webkit-appearance: none;
@@ -243,6 +256,8 @@ header {
     text-align: right;
 }
 
+/* #endregion */
+
 #start-btn {
     width: 100%;
     padding: 0.8rem 2rem;
@@ -269,6 +284,8 @@ header {
 
 /* #region Ausgabe Zug */
 
+
+/* #region Balken Oben */
 .train-icon{
     width: min(10%, 100%);
     max-width: 10%;
@@ -314,10 +331,14 @@ header {
     color: var(--color-text-2);
 }
 
+/* #endregion*/
+
 .divider{
     border: 1px solid var(--color-box-border);
     margin: 1rem 0;
 }
+
+/* #region Tabelle mit Informationen */
 
 .table{
     display: grid;
@@ -345,36 +366,17 @@ header {
     gap: 0.25rem;
 }
 
+/* #endregion */
 
-.response-suprise h2 {
-    width: 30%;
-
-}
-
-.response-suprise p {
-    width: auto !important;
-    margin: 0 !important;
-}
-
-.station-name {
-    font-size: 2.45rem !important;
-    font-weight: 700 !important;
-    color: var(--color-primary) !important;
-    position: absolute;
-    left: 50%;
-    top: 40%;
-    transform: translateX(-50%);
-    z-index: 1;
-    margin-top: 0 !important;
-    text-align: center;
-}
+/* #region Überraschungsbox */
 
 #aussteigen-title {
-    font-size: 1.25rem !important;     
+    font-size: 1.25rem;     
     font-weight: 500;
     color: var(--color-text);
     margin-bottom: 1.5rem;
     margin-left: 0.15rem;
+    padding-left: 0;
 }
 
 .response-suprise {
@@ -382,15 +384,6 @@ header {
     text-align: left;
     padding-left: 0;
     margin-left: 0;
-}
-
-#aussteigen-title {
-    font-size: 1.25rem ;
-    font-weight: 500;          
-    color: var(--color-text);
-    margin-bottom: 1.5rem;
-    margin-left: 0.15rem;
-    padding-left: 0;
 }
 
 .gift-wrapper {
@@ -463,6 +456,18 @@ header {
     transform: translateY(55px);    
 }
 
+.station-name {
+    font-size: 2.2rem ;
+    font-weight: 700 ;
+    color: var(--color-primary);
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translateX(-50%);
+    z-index: 1;
+    margin-top: 0;
+    text-align: center;
+}
 
 /* #endregion */
 
