@@ -320,25 +320,118 @@ header {
     gap: 0.25rem;
 }
 
-.response-suprise {
-    margin-top: 6rem;
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    align-items: centerj;
-}
 
 .response-suprise h2 {
     width: 30%;
 
 }
 
-.response-suprise p{
-    width: 70%;
-    text-align: center;
-    color: var(--color-primary);
-    font-size: var(--fs-subtitle);
+.response-suprise p {
+    width: auto !important;
+    margin: 0 !important;
 }
+
+.station-name {
+    font-size: 2.45rem !important;
+    font-weight: 700 !important;
+    color: var(--color-primary) !important;
+    margin-top: 2.8rem !important;
+    text-align: center !important;
+    display: none;
+    width: 100% !important;
+}
+
+#aussteigen-title {
+    font-size: 1.25rem !important;     
+    font-weight: 500;
+    color: var(--color-text);
+    margin-bottom: 1.5rem;
+    margin-left: 0.15rem;
+}
+
+.response-suprise {
+    margin-top: 2rem;
+    text-align: left;
+    padding-left: 0;
+    margin-left: 0;
+}
+
+#aussteigen-title {
+    font-size: 1.25rem ;
+    font-weight: 500;          
+    color: var(--color-text);
+    margin-bottom: 1.5rem;
+    margin-left: 0.15rem;
+    padding-left: 0;
+}
+
+.gift-wrapper {
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    max-width: 280px;
+}
+
+.gift-container {
+    position: relative;
+    width: 280px;
+    height: 280px;         
+    margin: 0 auto;
+}
+
+.gift-closed {
+    width: 100%;
+    position: absolute;
+    z-index: 2;
+    transition: opacity 0.4s ease;
+}
+
+.gift-open {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.gift-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 115%;
+    transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); 
+    z-index: 3;
+}
+
+.gift-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 1;
+}
+
+.gift-wrapper.open .gift-closed {
+    opacity: 0;
+}
+
+.gift-wrapper.open .gift-open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.gift-wrapper.open .gift-top {
+    transform: translateY(-85px);   
+}
+
+.gift-wrapper.open .gift-bottom {
+    transform: translateY(55px);    
+}
+
 
 /* #endregion */
 

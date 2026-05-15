@@ -1,5 +1,7 @@
 const ortInput = document.querySelector('#ort-input');
 const vorschlaegeBox = document.querySelector('#vorschlaege');
+const responseBox = document.querySelector('#response');
+responseBox.style.display = 'none';
 
 let ortEingabe = '';
 
@@ -123,9 +125,9 @@ async function main() {
         console.log(element);
     });
 
-let jetzt = new Date();
+    let jetzt = new Date();
 
-let gefilterteZuege = dataArray.filter((element) => {
+    let gefilterteZuege = dataArray.filter((element) => {
     let abfahrt = new Date(element.stop.departure);
     let minutenBisAbfahrt = (abfahrt - jetzt) / 60000;
 
@@ -133,10 +135,10 @@ let gefilterteZuege = dataArray.filter((element) => {
         && minutenBisAbfahrt >= 8
         && minutenBisAbfahrt <= 68
         && element.stop.platform;
-});
+    });
 
-if (gefilterteZuege.length === 0) {
-    gefilterteZuege = dataArray.filter((element) => {
+    if (gefilterteZuege.length === 0) {
+        gefilterteZuege = dataArray.filter((element) => {
         let abfahrt = new Date(element.stop.departure);
         let minutenBisAbfahrt =
             (abfahrt - jetzt) / 60000;
@@ -167,7 +169,6 @@ if (gefilterteZuege.length === 0) {
         minute: "2-digit"
     });
     
-    
     document.querySelector('#response-title').innerHTML =
     `Gehe um <span>${time}</span> auf <span>Gleis ${Zufallszug.stop.platform}</span>`;
 
@@ -183,23 +184,43 @@ document.querySelector('#response-departure').innerText =
 document.querySelector('#response-duration').innerText =
     `${Math.round(Zufallszug.fahrtdauer)} Minuten`;
 
-const zielStation =
-    Zufallszug.passList[Zufallszug.passList.length - 1].station.name;
+const zielStation = Zufallszug.passList[Zufallszug.passList.length - 1].station.name;
 
-const responseStation = document.querySelector('#response-station');
-
-responseStation.innerHTML = `
-    <img id="gift-img" src="img/geschenk.svg" alt="Geschenk">
-    <span id="station-name" style="display: none;">${zielStation}</span>
+document.getElementById('response-station').innerHTML = `
+    <h2 id="aussteigen-title">Aussteigen in:</h2>
+    
+    <div class="gift-wrapper" id="gift-wrapper">
+        <div class="gift-container">
+            <!-- Geschlossenes Geschenk -->
+            <img id="gift-closed" src="img/geschenk.svg" alt="Geschenk geschlossen" class="gift-closed">
+            
+            <!-- Geöffnetes Geschenk -->
+            <div id="gift-open" class="gift-open">
+                <img id="gift-top" src="img/Top.svg" alt="Deckel" class="gift-top">
+                <img id="gift-bottom" src="img/Bottom.svg" alt="Boden" class="gift-bottom">
+            </div>
+        </div>
+        
+        <p id="station-name" class="station-name">${zielStation}</p>
+    </div>
 `;
 
-const giftImg = document.querySelector('#gift-img');
-const stationName = document.querySelector('#station-name');
+const giftWrapper = document.getElementById('gift-wrapper');
+const stationNameEl = document.getElementById('station-name');
 
-giftImg.addEventListener('click', () => {
-    giftImg.style.display = 'none';
-    stationName.style.display = 'inline';
+let isOpen = false;
+
+giftWrapper.addEventListener('click', () => {
+    isOpen = !isOpen;
+    giftWrapper.classList.toggle('open', isOpen);
+    
+    if (isOpen) {
+        stationNameEl.style.display = 'block';
+    } else {
+        stationNameEl.style.display = 'none';
+    }
 });
+
+responseBox.style.display = 'block';
+responseBox.scrollIntoView({ behavior: "smooth" });
 }
-
-

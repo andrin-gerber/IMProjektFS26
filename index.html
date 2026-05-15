@@ -152,7 +152,7 @@
       </div>
 
       <!-- ab hier muss es dann mit JS erstellt werden - Platzhalter nur für styling-->
-      <div id="response" class="box">
+      <div id="response" class="box" style="display: none">
         <div class="response">
           <div class="train-icon">
             <svg viewBox="0 0 20 20">
@@ -377,8 +377,35 @@
             </div>
           </div>
           <div class="response-suprise">
-            <h2>Aussteigen in:</h2>
-            <p id="response-station">Sargans</p>
+            <h2 id="aussteigen-title">Aussteigen in:</h2>
+
+            <div class="gift-wrapper" id="gift-wrapper">
+              <div class="gift-container">
+                <img
+                  id="gift-closed"
+                  src="img/geschenk.svg"
+                  alt="Geschenk"
+                  class="gift-closed"
+                />
+
+                <div id="gift-open" class="gift-open">
+                  <img
+                    id="gift-top"
+                    src="img/Top.svg"
+                    alt="Deckel"
+                    class="gift-top"
+                  />
+                  <img
+                    id="gift-bottom"
+                    src="img/Bottom.svg"
+                    alt="Boden"
+                    class="gift-bottom"
+                  />
+                </div>
+              </div>
+
+              <p id="response-station" class="station-name">Sargans</p>
+            </div>
           </div>
         </div>
       </div>
