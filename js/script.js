@@ -189,24 +189,7 @@ document.querySelector('#response-duration').innerText =
 
 const zielStation = Zufallszug.passList[Zufallszug.passList.length - 1].station.name;
 
-document.getElementById('response-station').innerHTML = `
-    <h2 id="aussteigen-title">Aussteigen in:</h2>
-    
-    <div class="gift-wrapper" id="gift-wrapper">
-        <div class="gift-container">
-            <!-- Geschlossenes Geschenk -->
-            <img id="gift-closed" src="img/geschenk.svg" alt="Geschenk geschlossen" class="gift-closed">
-            
-            <!-- Geöffnetes Geschenk -->
-            <div id="gift-open" class="gift-open">
-                <img id="gift-top" src="img/Top.svg" alt="Deckel" class="gift-top">
-                <img id="gift-bottom" src="img/Bottom.svg" alt="Boden" class="gift-bottom">
-            </div>
-        </div>
-        
-        <p id="station-name" class="station-name">${zielStation}</p>
-    </div>
-`;
+document.getElementById('response-station').innerHTML = zielStation;
 
 const giftWrapper = document.getElementById('gift-wrapper');
 const stationNameEl = document.getElementById('station-name');
