@@ -216,6 +216,5 @@ giftWrapper.addEventListener('click', () => {
     }
 });
 
-
 responseBox.scrollIntoView({ behavior: "smooth" });
 }
